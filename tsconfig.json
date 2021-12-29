@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "allowJs": false,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      // TODO : SET ISOLATED MODULES TRUE AFTER
+      "isolatedModules": false,
+      "jsx": "react-native",
+      "lib": ["es6"],
+      "moduleResolution": "node",
+      "noEmit": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "target": "esnext"
+    },
+    "exclude": [
+      "node_modules",
+      "babel.config.js",
+      "metro.config.js",
+      "jest.config.js"
+    ]
+  }
