@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 
 const HomeScreen = () => {
   return (
@@ -10,7 +11,7 @@ const HomeScreen = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text>HomeScreen</Text>
+      <Text style={{fontSize: RFValue(14)}}>HomeScreen</Text>
     </View>
   );
 };
