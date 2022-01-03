@@ -9,7 +9,9 @@ const userPersistConfig = {
   whitelist: ['totalEvents'],
 };
 
-export default combineReducers({
+export const rootReducer = combineReducers({
   device: deviceReducer,
   user: persistReducer(userPersistConfig, userReducer),
 });
+
+export type IRootState = ReturnType<typeof rootReducer>;
