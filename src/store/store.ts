@@ -1,7 +1,8 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
-//eslint 
+// eslint-disable-file @typescript-eslint/no-unsafe-assignment
+
 import {reactotron} from '../ReactotronConfig';
 
 const middlewares = [applyMiddleware(thunk)];

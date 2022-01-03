@@ -10,6 +10,8 @@ const reducer = (state = initialState, action: IActionType) => {
     case 'ADD_EVENT': {
       return {...state, totalEvents: state.totalEvents + 1};
     }
+    default:
+      return state;
   }
 };
 

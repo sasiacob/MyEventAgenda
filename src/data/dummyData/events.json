@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "eventType": "Anniversary",
+      "clientName": "John B",
+      "phoneNumber": "0433023033",
+      "menu": "pasta",
+      "peopleNo": 20,
+      "date": 1640781143963,
+      "reservationFee": 100,
+      "menuPrice": 30,
+      "totalPrice": 600,
+      "payableRest": 500,
+      "takeout": false,
+      "otherDetails": ""
+    }
+  ]
+}
