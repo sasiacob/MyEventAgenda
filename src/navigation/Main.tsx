@@ -1,7 +1,8 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RFValue} from 'react-native-responsive-fontsize';
-import {HomeStack} from './StackNavigators';
+import {AccountStack, HomeStack} from './StackNavigators';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 const MainNavigator = () => {
@@ -18,10 +19,19 @@ const MainNavigator = () => {
         component={HomeStack}
         options={{
           headerShown: true,
-          title: 'HomeStack',
           tabBarLabel: 'Home',
           tabBarShowLabel: true,
-          tabBarLabelStyle: {fontSize:RFValue(10) },
+          tabBarLabelStyle: {fontSize: RFValue(10)},
+        }}
+      />
+      <Tab.Screen
+        name="AccountStack"
+        component={AccountStack}
+        options={{
+          headerShown: true,
+          tabBarLabel: 'Account',
+          tabBarShowLabel: true,
+          tabBarLabelStyle: {fontSize: RFValue(10)},
         }}
       />
     </Tab.Navigator>
