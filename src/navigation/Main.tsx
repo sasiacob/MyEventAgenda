@@ -3,13 +3,15 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RFValue} from 'react-native-responsive-fontsize';
 import {AccountStack, HomeStack} from './StackNavigators';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {Colors} from '../theme';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Tab = createBottomTabNavigator();
 const MainNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarLabelPosition: 'below-icon',
         tabBarShowLabel: true,
@@ -18,7 +20,6 @@ const MainNavigator = () => {
         name="HomeStack"
         component={HomeStack}
         options={{
-          headerShown: true,
           tabBarLabel: 'Home',
           tabBarShowLabel: true,
           tabBarLabelStyle: {fontSize: RFValue(10)},
@@ -28,7 +29,6 @@ const MainNavigator = () => {
         name="AccountStack"
         component={AccountStack}
         options={{
-          headerShown: true,
           tabBarLabel: 'Account',
           tabBarShowLabel: true,
           tabBarLabelStyle: {fontSize: RFValue(10)},

@@ -1,9 +1,9 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {IRootState} from '../../store/rootReducer';
-
+import {Text} from '../../components';
 type RootStackParamList = {
   EventDetails: {id: string | number};
 };
@@ -22,7 +22,7 @@ const EventDetails = ({navigation, route}: Props) => {
     );
   return (
     <View>
-      <Text>{event.eventType}</Text>
+      <Text>{event.menu}</Text>
     </View>
   );
 };
