@@ -1,5 +1,5 @@
 import {useIsFocused} from '@react-navigation/native';
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {FlatList, StyleSheet, Animated, Easing} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
@@ -11,19 +11,26 @@ import {Colors} from '../../theme';
 
 const HomeScreen = () => {
   const events = useSelector((state: IRootState) => state.user.events);
-  const renderItem = ({item}: {item: IEvent}) => <EventCard event={item} />;
+  const [animatedValues, setAnimatedValues] = useState([]) ;
+  const position = useRef(new Animated.Value(200)).current;
 
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const position = useRef(new Animated.Value(1000)).current;
+  const renderItem = ({item, index}: {item: IEvent; index: number}) => (
+    <Animated.View style={{opacity: animatedValues[index]}}>
+      <EventCard event={item} />
+    </Animated.View>
+  );
 
   useEffect(() => {
-    Animated.timing(position, {
-      toValue: 0,
-      // easing: Easing.back(0),
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  }, [position]);
+    if (events.length > 0) {
+      let animated = Array(events.length).fill(new Animated.Value(0));
+      setAnimatedValues(animated);
+    }
+  }, [events]);
+  useEffect(() => {
+    //    position.setValue(0);
+    if (animatedValues.length === 0) return;
+    Animated.stagger().start();
+  }, [animatedValues]);
 
   return (
     // <SafeAreaView style={{flex: 1}}>
@@ -42,8 +49,7 @@ const HomeScreen = () => {
         backgroundColor: Colors.primary,
         padding: 25,
       }}>
-      <Animated.FlatList
-        style={{transform: [{translateY: position}]}}
+      <FlatList
         contentContainerStyle={styles.eventsContainer}
         data={events}
         renderItem={renderItem}
