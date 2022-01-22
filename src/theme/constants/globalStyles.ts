@@ -25,4 +25,10 @@ export default StyleSheet.create({
     fontSize: RFValue(30),
     fontWeight: 'bold',
   },
+  fill: {flex: 1},
+  fillAndCenter: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

@@ -11,7 +11,7 @@ import {Colors} from '../../theme';
 
 const HomeScreen = () => {
   const events = useSelector((state: IRootState) => state.user.events);
-  const [animatedValues, setAnimatedValues] = useState([]) ;
+  const [animatedValues, setAnimatedValues] = useState([]);
   const position = useRef(new Animated.Value(200)).current;
 
   const renderItem = ({item, index}: {item: IEvent; index: number}) => (
@@ -22,14 +22,14 @@ const HomeScreen = () => {
 
   useEffect(() => {
     if (events.length > 0) {
-      let animated = Array(events.length).fill(new Animated.Value(0));
-      setAnimatedValues(animated);
+      const animated = Array(events.length).fill(new Animated.Value(0));
+      // setAnimatedValues(animated);
     }
   }, [events]);
   useEffect(() => {
     //    position.setValue(0);
     if (animatedValues.length === 0) return;
-    Animated.stagger().start();
+    // Animated.stagger().start();
   }, [animatedValues]);
 
   return (
