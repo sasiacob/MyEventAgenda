@@ -13,3 +13,8 @@ export interface IEvent {
   takeout: boolean;
   otherDetails: string | string[];
 }
+export interface IGroup {
+  readonly id: string | number;
+  screenName: string;
+  name: string;
+}

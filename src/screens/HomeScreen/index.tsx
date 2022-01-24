@@ -1,40 +1,37 @@
 import {useIsFocused} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
-import {FlatList, StyleSheet, Animated, Easing} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  Animated,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+import {Icon} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
+import {RFValue} from 'react-native-responsive-fontsize';
 import {useSelector} from 'react-redux';
-import {Title} from '../../components';
+import {Text, Title} from '../../components';
 import EventCard from '../../components/EventCard';
 import {IEvent} from '../../data/models';
 import {IRootState} from '../../store/rootReducer';
-import {Colors} from '../../theme';
+import {Colors, rSpacing} from '../../theme';
 
 const HomeScreen = () => {
   const events = useSelector((state: IRootState) => state.user.events);
   const [animatedValues, setAnimatedValues] = useState([]);
-  const position = useRef(new Animated.Value(200)).current;
+
+  const [showNextEvents, setShowNextEvents] = useState(true);
 
   const renderItem = ({item, index}: {item: IEvent; index: number}) => (
     <Animated.View style={{opacity: animatedValues[index]}}>
       <EventCard event={item} />
     </Animated.View>
   );
-
-  useEffect(() => {
-    if (events.length > 0) {
-      const animated = Array(events.length).fill(new Animated.Value(0));
-      // setAnimatedValues(animated);
-    }
-  }, [events]);
-  useEffect(() => {
-    //    position.setValue(0);
-    if (animatedValues.length === 0) return;
-    // Animated.stagger().start();
-  }, [animatedValues]);
-
+  const handleAddPress = () => {
+    console.log('press');
+  };
   return (
-    // <SafeAreaView style={{flex: 1}}>
-
     <LinearGradient
       colors={[
         Colors.secondary[500],
@@ -43,18 +40,28 @@ const HomeScreen = () => {
       ]}
       start={{x: 0.5, y: 0.5}}
       end={{x: 0, y: 0}}
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: Colors.primary,
-        padding: 25,
-      }}>
+      style={styles.wrapper}>
       <FlatList
         contentContainerStyle={styles.eventsContainer}
         data={events}
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
-        ListHeaderComponent={() => <Title>Future Events</Title>}
+        ListHeaderComponent={() => (
+          <Header
+            onToggle={setShowNextEvents}
+            showNextEvents={showNextEvents}
+          />
+        )}
+      />
+      <Icon
+        name="pluscircle"
+        activeOpacity={0.5}
+        type="antdesign"
+        tvParallaxProperties={undefined}
+        color={Colors.light}
+        size={RFValue(40)}
+        containerStyle={styles.addIconContainer}
+        onPress={handleAddPress}
       />
     </LinearGradient>
 
@@ -63,10 +70,60 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-
+const Header = ({
+  showNextEvents,
+  onToggle,
+}: {
+  showNextEvents: boolean;
+  onToggle: (showNext: boolean) => void;
+}) => {
+  return (
+    <View>
+      <Title>Events</Title>
+      <View style={styles.dateFilterContainer}>
+        <TouchableOpacity onPress={() => onToggle(false)}>
+          <Text
+            size="large"
+            style={styles.text}
+            weight={!showNextEvents ? 'bold' : 'regular'}>
+            Previous
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => onToggle(true)}>
+          <Text
+            size="large"
+            style={styles.text}
+            weight={showNextEvents ? 'bold' : 'regular'}>
+            Next
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
 const styles = StyleSheet.create({
   eventsContainer: {
-    //flex:
     marginTop: 20,
+  },
+  dateFilterContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  text: {
+    color: Colors.primary[500],
+    padding: RFValue(5),
+    marginBottom: RFValue(5),
+  },
+  addIconContainer: {
+    position: 'absolute',
+    bottom: rSpacing.regural,
+    right: rSpacing.regural,
+  },
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
+   
+    padding: rSpacing.regural,
   },
 });

@@ -3,7 +3,7 @@ import {StyleSheet, Text as RNText, TextProps} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
 import {Colors} from '../../theme';
 
-interface ICustomTextProps extends TextProps {
+export interface ICustomTextProps extends TextProps {
   weight?: 'thin' | 'light' | 'regular' | 'medium' | 'bold';
   size?: 'tiny' | 'small' | 'normal' | 'large' | 'xLarge';
 }
@@ -31,16 +31,16 @@ const styles = StyleSheet.create({
   bold: {fontFamily: 'Montserrat-Bold'},
 
   tiny: {
-    fontSize: RFValue(8),
-  },
-  small: {
     fontSize: RFValue(10),
   },
-  normal: {
+  small: {
     fontSize: RFValue(12),
   },
-  large: {
+  normal: {
     fontSize: RFValue(14),
+  },
+  large: {
+    fontSize: RFValue(16),
   },
   xLarge: {
     fontSize: RFValue(20),

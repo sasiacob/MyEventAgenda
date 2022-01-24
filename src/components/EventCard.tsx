@@ -25,7 +25,7 @@ const EventCard = ({event}: {event: IEvent & {noPropDefined?: string}}) => {
           start={{x: 0.5, y: 0}}
           end={{x: 0.5, y: 0.1}}
           style={[{padding: 20, borderRadius: 10}]}
-          colors={['#ccc', Colors.light]}>
+          colors={['#fff', Colors.light]}>
           <Text style={styles.cardTitle}>{eventType}</Text>
           <Text weight="light">{clientName}</Text>
           <Text>{menu}</Text>
@@ -41,9 +41,7 @@ export default React.memo(EventCard);
 
 const styles = StyleSheet.create({
   cardContainer: {
-    //backgroundColor: Colors.light,
     width: '100%',
-    //padding: 20,
     marginBottom: 20,
   },
   cardTitle: {

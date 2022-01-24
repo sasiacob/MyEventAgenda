@@ -1,10 +1,14 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {HomeScreen, AccountScreen, EventDetails} from '../screens';
-import {Colors} from '../theme';
-import {RFValue} from 'react-native-responsive-fontsize';
-import {Title} from '../components';
-import {View} from 'react-native';
+import {
+  HomeScreen,
+  AccountScreen,
+  EventDetails,
+  GroupsScreen,
+  UsersScreen,
+  SettingsScreen,
+} from '../screens';
+
 const Stack = createStackNavigator();
 export const HomeStack = () => {
   return (
@@ -25,6 +29,9 @@ export const AccountStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Account" component={AccountScreen} />
+      <Stack.Screen name="Groups" component={GroupsScreen} />
+      <Stack.Screen name="Users" component={UsersScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
 };

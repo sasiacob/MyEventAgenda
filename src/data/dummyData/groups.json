@@ -1,0 +1,14 @@
+{
+  "groups": [
+    {
+      "id": "23324ub23b3",
+      "screenName": "Restaurant KFA",
+      "name": "rest_kfa"
+    },
+    {
+        "id": "23324ub2ss3b3",
+        "screenName": "Restaurant McBurger",
+        "name": "rest_mc_burger"
+      }
+  ]
+}

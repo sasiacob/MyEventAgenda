@@ -2,9 +2,10 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RFValue} from 'react-native-responsive-fontsize';
 import {AccountStack, HomeStack} from './StackNavigators';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 import {Colors} from '../theme';
 import LinearGradient from 'react-native-linear-gradient';
+import {Icon} from 'react-native-elements';
 
 const Tab = createBottomTabNavigator();
 const MainNavigator = () => {
@@ -22,7 +23,15 @@ const MainNavigator = () => {
         options={{
           tabBarLabel: 'Home',
           tabBarShowLabel: true,
-          tabBarLabelStyle: {fontSize: RFValue(10)},
+          tabBarLabelStyle: {fontSize: RFValue(12)},
+          tabBarIcon: ({color, size}) => (
+            <Icon
+              name="home"
+              color={color}
+              size={RFValue(size)}
+              tvParallaxProperties={undefined}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -31,7 +40,15 @@ const MainNavigator = () => {
         options={{
           tabBarLabel: 'Account',
           tabBarShowLabel: true,
-          tabBarLabelStyle: {fontSize: RFValue(10)},
+          tabBarIcon: ({color, size}) => (
+            <Icon
+              name="account-circle"
+              color={color}
+              size={RFValue(size)}
+              tvParallaxProperties={undefined}
+            />
+          ),
+          tabBarLabelStyle: {fontSize: RFValue(12)},
         }}
       />
     </Tab.Navigator>

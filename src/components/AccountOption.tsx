@@ -1,16 +1,16 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Text} from '.';
-import {Colors} from '../theme';
+import {Colors, rSpacing} from '../theme';
 interface IAccountOptionProps {
   text: string;
   onPress: () => void;
 }
 const AccountOption = ({text, onPress}: IAccountOptionProps) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
       <View style={[styles.container]}>
-        <Text>{text}</Text>
+        <Text size='large' weight='medium'>{text}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -20,10 +20,11 @@ export default AccountOption;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.secondary[200],
-    padding: 10,
+    backgroundColor: Colors.light,
+    padding: rSpacing.regural,
     width: '100%',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+   // borderBottomWidth: StyleSheet.hairlineWidth,
+   borderBottomWidth:0.2,
     borderColor: Colors.secondary[500],
   },
 });
