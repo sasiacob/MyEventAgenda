@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     width: '100%',
     marginBottom: 20,
+    
   },
   cardTitle: {
     fontSize: RFValue(20),
