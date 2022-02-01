@@ -1,12 +1,15 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {IRootState} from '../../store/rootReducer';
 import {Text} from '../../components';
 import {Colors, rSpacing, GlobalStyles as s} from '../../theme';
 import {Icon} from 'react-native-elements';
 import {RFValue} from 'react-native-responsive-fontsize';
+import EventEditModal from '../../components/EventEditModal';
+import {addEvent, deleteEvent} from '../../store/user/userActions';
+import {IEvent} from '../../data/models';
 type RootStackParamList = {
   EventDetails: {id: string | number};
 };
@@ -14,9 +17,11 @@ type RootStackParamList = {
 type Props = NativeStackScreenProps<RootStackParamList, 'EventDetails'>;
 const EventDetails = ({navigation, route}: Props) => {
   const eventId = route.params.id;
+  const [visibleModal, setVisibleModal] = useState(false);
   const event = useSelector((state: IRootState) =>
     state.user.events.find(event => event.id === eventId),
   );
+  const dispatch = useDispatch();
   enum undefinedValues {
     UNDEFINED = 'Undefined',
     NOT_SELECTED = 'Not selected',
@@ -52,9 +57,12 @@ const EventDetails = ({navigation, route}: Props) => {
     takeout,
     totalPrice,
   } = event ?? {};
-
-  const handleDeletePress = () => {};
-  const handleEditPress = () => {};
+  const toggleModal = () => {
+    setVisibleModal(c => !c);
+  };
+  const handleDeletePress = () => {
+    if (event?.id) dispatch(deleteEvent(event?.id.toString()));
+  };
 
   if (!event) {
     return (
@@ -63,6 +71,10 @@ const EventDetails = ({navigation, route}: Props) => {
       </View>
     );
   }
+  const handleSubmit = (event: IEvent) => {
+    dispatch(addEvent(event));
+    toggleModal();
+  };
   return (
     <ScrollView>
       <View style={[s.shadowed, styles.wrapper]}>
@@ -125,7 +137,7 @@ const EventDetails = ({navigation, route}: Props) => {
           color={Colors.secondary[500]}
           containerStyle={styles.iconContainer}
           size={RFValue(30)}
-          onPress={handleEditPress}
+          onPress={toggleModal}
           tvParallaxProperties={undefined}
         />
         <Icon
@@ -137,6 +149,12 @@ const EventDetails = ({navigation, route}: Props) => {
           tvParallaxProperties={undefined}
         />
       </View>
+      <EventEditModal
+        onSubmit={handleSubmit}
+        event={event}
+        isVisible={visibleModal}
+        onClose={toggleModal}
+      />
     </ScrollView>
   );
 };
@@ -177,7 +195,7 @@ const styles = StyleSheet.create({
     width: '80%',
     borderBottomWidth: 1,
     borderBottomColor: Colors.secondary[300],
-    alignSelf:'flex-start',
-    marginBottom: rSpacing.regural
+    alignSelf: 'flex-start',
+    marginBottom: rSpacing.regural,
   },
 });

@@ -31,5 +31,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  centeredRow: {
+    flexDirection:'row', 
+    alignContent:'center'
+  }, 
+  
   
 });

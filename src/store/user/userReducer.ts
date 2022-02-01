@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {IEvent} from '../../data/models';
+import {ADD_EVENT, DELETE_EVENT} from './userTypes';
 
 interface IInitialStateProps {
   totalEvents: number;
@@ -8,7 +11,7 @@ const initialState: IInitialStateProps = {
   totalEvents: 0,
   events: [
     {
-      id: 1,
+      id: '1',
       eventType: 'Anniversary',
       clientName: 'John B',
       phoneNumber: '0433023033',
@@ -23,7 +26,7 @@ const initialState: IInitialStateProps = {
       otherDetails: '',
     },
     {
-      id: 2,
+      id: '2',
       eventType: 'Anniversary',
       clientName: 'John B',
       phoneNumber: '0433023033',
@@ -41,12 +44,29 @@ const initialState: IInitialStateProps = {
 };
 interface IActionType {
   type: string;
-  payload: number;
+  payload: any;
 }
 const reducer = (state = initialState, action: IActionType) => {
   switch (action.type) {
-    case 'ADD_EVENT': {
-      return {...state, totalEvents: state.totalEvents + 1};
+    case ADD_EVENT: {
+      const existingValueIndex = state.events.findIndex(
+        event => event.id === action.payload.id,
+      );
+      if (existingValueIndex > -1) {
+        return {
+          ...state,
+          events: state.events.map((event, i) =>
+            existingValueIndex === i ? action.payload : event,
+          ),
+        };
+      }
+      return {...state, events: [...state.events, action.payload]};
+    }
+    case DELETE_EVENT: {
+      return {
+        ...state,
+        events: state.events.filter(event => event.id !== action.payload),
+      };
     }
 
     default:

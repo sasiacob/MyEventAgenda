@@ -343,6 +343,8 @@ PODS:
     - React-perflogger (= 0.66.4)
   - RNCAsyncStorage (1.15.14):
     - React-Core
+  - RNCPicker (2.2.1):
+    - React-Core
   - RNGestureHandler (2.1.0):
     - React-Core
   - RNLocalize (2.1.7):
@@ -412,6 +414,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -500,6 +503,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNLocalize:
@@ -557,6 +562,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: dec32ee6f2e2a26e13e58152271535fadff5455a
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
   RNCAsyncStorage: ea6b5c280997b2b32a587793163b1f10e580c4f7
+  RNCPicker: cb57c823d5ce8d2d0b5dfb45ad97b737260dc59e
   RNGestureHandler: e5c7cab5f214503dcefd6b2b0cefb050e1f51c4a
   RNLocalize: f567ea0e35116a641cdffe6683b0d212d568f32a
   RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e

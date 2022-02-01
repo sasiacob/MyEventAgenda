@@ -10,26 +10,34 @@ import {
 import {Icon} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import {RFValue} from 'react-native-responsive-fontsize';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Text, Title} from '../../components';
 import EventCard from '../../components/EventCard';
+import EventEditModal from '../../components/EventEditModal';
 import {IEvent} from '../../data/models';
 import {IRootState} from '../../store/rootReducer';
+import {addEvent} from '../../store/user/userActions';
 import {Colors, rSpacing} from '../../theme';
 
 const HomeScreen = () => {
   const events = useSelector((state: IRootState) => state.user.events);
   const [animatedValues, setAnimatedValues] = useState([]);
-
   const [showNextEvents, setShowNextEvents] = useState(true);
-
+  const [visibleModal, setVisibleModal] = useState(false);
+  const dispatch = useDispatch();
   const renderItem = ({item, index}: {item: IEvent; index: number}) => (
     <Animated.View style={{opacity: animatedValues[index]}}>
       <EventCard event={item} />
     </Animated.View>
   );
-  const handleAddPress = () => {
-    console.log('press');
+
+  const toggleModal = () => {
+    setVisibleModal(c => !c);
+  };
+
+  const handleSubmit = (event: IEvent) => {
+    dispatch(addEvent(event));
+    toggleModal();
   };
   return (
     <LinearGradient
@@ -61,8 +69,16 @@ const HomeScreen = () => {
         color={Colors.light}
         size={RFValue(40)}
         containerStyle={styles.addIconContainer}
-        onPress={handleAddPress}
+        onPress={toggleModal}
       />
+      {visibleModal && (
+        <EventEditModal
+          onSubmit={handleSubmit}
+          onClose={toggleModal}
+          isVisible={visibleModal}
+          event={undefined}
+        />
+      )}
     </LinearGradient>
 
     //    </SafeAreaView>
@@ -123,7 +139,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: 'center',
-   
+
     padding: rSpacing.regural,
   },
 });

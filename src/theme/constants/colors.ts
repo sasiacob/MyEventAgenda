@@ -12,6 +12,8 @@ export const Colors = {
   },
 
   gray: '#444444',
+  lightGray: '#cccccc',
+  semiTransparent: '88',
   dark: '#000000',
   light: '#ffffff',
   text: '#555555',

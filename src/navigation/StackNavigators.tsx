@@ -7,6 +7,7 @@ import {
   GroupsScreen,
   UsersScreen,
   SettingsScreen,
+  EditEventScreen,
 } from '../screens';
 
 const Stack = createStackNavigator();
@@ -21,6 +22,7 @@ export const HomeStack = () => {
         }}
       />
       <Stack.Screen name="EventDetails" component={EventDetails} />
+  
     </Stack.Navigator>
   );
 };

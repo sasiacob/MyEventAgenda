@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Button as RNEButton, ButtonProps} from 'react-native-elements';
 
 interface IButton extends ButtonProps {
-  btnType?: 'primary' | 'secondary';
+  btnType?: 'primary' | 'secondary' | 'danger'
 }
 
 const Button = ({btnType = 'primary', type ='clear', ...props}: IButton) => {
@@ -11,7 +11,7 @@ const Button = ({btnType = 'primary', type ='clear', ...props}: IButton) => {
     <RNEButton
       type={type}
       {...props}
-      titleStyle={styles.btnText}
+      titleStyle={[styles.btnText, btnType ==='danger' && styles.textDanger]}
     />
   );
 };
@@ -22,4 +22,8 @@ const styles = StyleSheet.create({
   btnText: {
     fontFamily: 'Montserrat-Medium',
   },
+  textDanger:{
+    color: 'red'
+  }
+
 });

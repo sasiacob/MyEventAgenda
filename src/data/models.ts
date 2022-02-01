@@ -1,5 +1,5 @@
 export interface IEvent {
-  readonly id: number | string;
+   id: number | string;
   eventType: string;
   clientName: string;
   phoneNumber: string;
