@@ -1,6 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {Alert, ScrollView, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {IRootState} from '../../store/rootReducer';
 import {Text} from '../../components';
@@ -61,7 +61,21 @@ const EventDetails = ({navigation, route}: Props) => {
     setVisibleModal(c => !c);
   };
   const handleDeletePress = () => {
-    if (event?.id) dispatch(deleteEvent(event?.id.toString()));
+    Alert.alert('Are you sure ?', undefined, [
+      {
+        text: 'Cancel',
+        onPress: () => {},
+        style: 'cancel',
+      },
+      {
+        text: 'Delete',
+        onPress: () => {
+          if (event?.id) dispatch(deleteEvent(event?.id.toString()));
+          navigation.goBack();
+        },
+        style: 'destructive',
+      },
+    ]);
   };
 
   if (!event) {
