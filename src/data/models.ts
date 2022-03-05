@@ -1,5 +1,5 @@
 export interface IEvent {
-   id: number | string;
+  id: number | string;
   eventType: string;
   clientName: string;
   phoneNumber: string;
@@ -17,4 +17,10 @@ export interface IGroup {
   readonly id: string | number;
   screenName: string;
   name: string;
+}
+
+export interface IAuthState {
+  accessToken: string;
+  refreshToken: string;
+  authenticated: boolean;
 }

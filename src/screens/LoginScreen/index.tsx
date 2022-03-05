@@ -8,13 +8,20 @@ import {Button, Input} from '../../components';
 import GroupSelector from '../../components/GroupSelector';
 import {useDispatch} from 'react-redux';
 import {setSelectedGroup, signIn} from '../../store/auth/authActions';
+import {login} from '../../api/utils';
 const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const handleLoginPress = () => {
-    setVisible(true);
+  const handleLoginPress = async () => {
+    // setVisible(true);
+    try {
+      const validUser = await login(username, password);
+      console.log('validUser', validUser);
+    } catch (err) {
+      console.log(JSON.stringify(err.message));
+    }
     //dispatch(signIn('mockjwt'));
   };
   const handleCloseModal = (selectedGroupId: string) => {

@@ -1,8 +1,9 @@
+import {IAuthState} from '../../data/models';
 import {SET_SELECTED_GROUP, SIGN_IN, SIGN_OUT} from './authTypes';
 
 interface IInitialState {
   credentials: object;
-  token: string;
+  authState: IAuthState;
   selectedGroup: string;
 }
 const initialState: IInitialState = {
@@ -10,7 +11,11 @@ const initialState: IInitialState = {
     username: '',
     password: '',
   },
-  token: '',
+  authState: {
+    accessToken: '',
+    refreshToken: '',
+    authenticated: false,
+  },
   selectedGroup: '',
 };
 interface IActionType {
@@ -20,10 +25,13 @@ interface IActionType {
 const reducer = (state = initialState, action: IActionType) => {
   switch (action.type) {
     case SIGN_IN: {
-      return {...state, token: action.payload};
+      return {...state, authState: action.payload};
     }
     case SIGN_OUT: {
-      return {...state, token: ''};
+      return {
+        ...state,
+        authState: {accessToken: '', refreshToken: '', authenticated: false},
+      };
     }
     case SET_SELECTED_GROUP: {
       return {...state, selectedGroup: action.payload};

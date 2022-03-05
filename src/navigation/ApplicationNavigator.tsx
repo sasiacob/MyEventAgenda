@@ -19,8 +19,7 @@ const Stack = createStackNavigator();
 
 const ApplicationNavigator = () => {
   const isLoggedIn = useSelector(
-    (state: IRootState) => state.auth.token.length > 5,
-  );
+    (state: IRootState) => state.auth.authState.authenticated );
   useEffect(() => {
     console.log('isLoggedIn', isLoggedIn);
   }, [isLoggedIn]);
