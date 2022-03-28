@@ -1,9 +1,15 @@
+import {IAuthState} from '../../data/models';
 import {SET_SELECTED_GROUP, SIGN_IN, SIGN_OUT} from './authTypes';
 
-export const signIn = (token: string) => {
+export const signIn = (accessToken: string, refreshToken = '') => {
+  const authState: IAuthState = {
+    accessToken: accessToken,
+    refreshToken: refreshToken,
+    authenticated: true,
+  };
   return {
     type: SIGN_IN,
-    payload: token,
+    payload: authState,
   };
 };
 

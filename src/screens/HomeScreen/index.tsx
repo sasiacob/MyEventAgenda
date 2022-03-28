@@ -66,8 +66,9 @@ const HomeScreen = () => {
         activeOpacity={0.5}
         type="antdesign"
         tvParallaxProperties={undefined}
-        color={Colors.light}
+        color={Colors.primary}
         size={RFValue(40)}
+        
         containerStyle={styles.addIconContainer}
         onPress={toggleModal}
       />
