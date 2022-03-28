@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {ErrorHandlerCallback, StyleSheet, View} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {Title} from '../../components';
 import s from '../../theme/constants/globalStyles';
@@ -18,11 +18,11 @@ const LoginScreen = () => {
     // setVisible(true);
     try {
       const validUser = await login(username, password);
+      //dispatch(signIn('mockjwt'));
       console.log('validUser', validUser);
     } catch (err) {
       console.log(JSON.stringify(err.message));
     }
-    //dispatch(signIn('mockjwt'));
   };
   const handleCloseModal = (selectedGroupId: string) => {
     dispatch(setSelectedGroup(selectedGroupId));
